@@ -174,23 +174,24 @@ function handleClick(event) {
     // Update score and display winner message
     score[currentPlayer]++;
     updateScoreboard();
-    winnerText.textContent = `🎉 ${playerNames[currentPlayer]} wint deze ronde! 🎉`;
+    winnerText.innerHTML = `<i class="bi bi-trophy-fill me-2"></i>${playerNames[currentPlayer]} wint deze ronde!`;
+
     winnerMessage.classList.remove("hidden");
     // Check if the player has reached 5 points
     if (score[currentPlayer] === 5) {
-      winnerText.textContent = `🏆 ${playerNames[currentPlayer]} heeft 5 punten behaald en gewonnen! 🏆`;
-      nextRoundButton.textContent = "🔄 Opnieuw Spelen";
+      winnerText.innerHTML = `<i class="bi bi-trophy-fill me-2"></i>${playerNames[currentPlayer]} heeft 5 punten behaald en gewonnen!`;
+      nextRoundButton.innerHTML = `<i class="bi bi-arrow-repeat me-2"></i>Opnieuw Spelen`;
     } else {
-      nextRoundButton.textContent = "🔄 Volgende Ronde";
+      nextRoundButton.innerHTML = `<i class="bi bi-arrow-repeat me-2"></i>Volgende Ronde`;
     }
 
     nextRoundButton.classList.remove("hidden");
     cells.forEach(cell => cell.removeEventListener("click", handleClick));
   } else if (isDraw()) {
     // Handle draw case
-    winnerText.textContent = "🤝 Het is een gelijkspel! 🤝";
+    winnerText.innerHTML = `<i class="bi bi-handshake-fill me-2"></i>Het is een gelijkspel!`;
     winnerMessage.classList.remove("hidden");
-    nextRoundButton.textContent = "🔄 Volgende Ronde";
+    nextRoundButton.innerHTML = `<i class="bi bi-arrow-repeat me-2"></i>Volgende Ronde`;
     nextRoundButton.classList.remove("hidden");
     cells.forEach(cell => cell.removeEventListener("click", handleClick));
   } else {

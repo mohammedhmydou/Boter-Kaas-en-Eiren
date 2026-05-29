@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boter Kaas en Eieren</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <h1>🎮 Boter Kaas en Eieren 🎮</h1>
+
+  <div class="gamemode-selection">
+    <h2>Kies een spelmodus:</h2>
+    <button class="gamemode-button" data-mode="player">👥 Speler vs Speler</button>
+    <button class="gamemode-button" data-mode="computer">🤖 Speler vs Computer</button>
+  </div>
+
+  <div class="player-names hidden">
+    <label for="playerX">👤 Naam Speler X:</label>
+    <input type="text" id="playerX" placeholder="Voer naam in Speler X">
+    
+    <label for="playerO">👤 Naam Speler O:</label>
+    <input type="text" id="playerO" placeholder="Voer naam in Speler O">
+    
+    <button class="start-game-button">▶️ Start Game</button>
+  </div>
+
+  <div class="game-container hidden">
+    <div class="scoreboard hidden">
+      <p id="scoreboard-playerX">🔵 Speler X: <span id="scoreX">0</span></p>
+      <p id="scoreboard-playerO">🔴 Speler O: <span id="scoreO">0</span></p>
+    </div>
+
+    <div class="board-wrapper">
+      <svg id="winningLine" width="330" height="330" style="position: absolute; top: 0; left: 0;"></svg>
+      <div class="board">
+        <div class="cell" data-index="0"></div>
+        <div class="cell" data-index="1"></div>
+        <div class="cell" data-index="2"></div>
+        <div class="cell" data-index="3"></div>
+        <div class="cell" data-index="4"></div>
+        <div class="cell" data-index="5"></div>
+        <div class="cell" data-index="6"></div>
+        <div class="cell" data-index="7"></div>
+        <div class="cell" data-index="8"></div>
+      </div>
+    </div>
+
+    <div class="winner-message hidden">
+      <p class="winner-text"></p>
+      <button class="next-round-button hidden">🔄 Volgende Ronde</button>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
+

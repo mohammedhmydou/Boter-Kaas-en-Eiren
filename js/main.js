@@ -92,41 +92,39 @@ function checkWinner() {
 // Draw a line through the winning cells
 function drawWinningLine() {
   if (!winningCombination) return;
-  
+
   const [a, b, c] = winningCombination;
-  const cellWidth = 110;
-  const cellHeight = 110;
-  const padding = 8;
-  
-  // Get positions of winning cells
+  const wrapperRect = document.querySelector('.board-wrapper').getBoundingClientRect();
+
+  // Use the real position of the cells, so the line stays correct when CSS changes.
   const getPosition = (index) => {
-    const row = Math.floor(index / 3);
-    const col = index % 3;
+    const rect = cells[index].getBoundingClientRect();
     return {
-      x: col * cellWidth + padding + cellWidth / 2,
-      y: row * cellHeight + padding + cellHeight / 2
+      x: rect.left - wrapperRect.left + rect.width / 2,
+      y: rect.top - wrapperRect.top + rect.height / 2
     };
   };
-  
+
   const pos1 = getPosition(a);
   const pos2 = getPosition(c);
-  
+
   // Clear previous line
   winningLineSVG.innerHTML = '';
-  
+
   // Create line with animation
   const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
   line.setAttribute('x1', pos1.x);
   line.setAttribute('y1', pos1.y);
   line.setAttribute('x2', pos2.x);
   line.setAttribute('y2', pos2.y);
-  line.setAttribute('stroke', currentPlayer === 'X' ? '#ff6b6b' : '#4ecdc4');
-  line.setAttribute('stroke-width', '6');
+  line.setAttribute('stroke', currentPlayer === 'X' ? '#ff5e7e' : '#47f3ff');
+  line.setAttribute('stroke-width', '7');
   line.setAttribute('stroke-linecap', 'round');
+  line.setAttribute('filter', 'drop-shadow(0 0 8px currentColor)');
   line.setAttribute('stroke-dasharray', Math.hypot(pos2.x - pos1.x, pos2.y - pos1.y));
   line.setAttribute('stroke-dashoffset', Math.hypot(pos2.x - pos1.x, pos2.y - pos1.y));
   line.style.animation = 'drawLine 0.6s ease-out forwards';
-  
+
   winningLineSVG.appendChild(line);
   
   // Add animation to SVG if not already present
